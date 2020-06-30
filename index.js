@@ -58,7 +58,7 @@ AFRAME.registerComponent('slice9', {
     if (this.material) {
       this.material.dispose();
     }
-  }
+  },
 
   regenerateMesh: function () {
     var data = this.data;
