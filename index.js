@@ -36,7 +36,7 @@ AFRAME.registerComponent('slice9', {
 
     this.textureSrc = null;
 
-    geometry = this.geometry = new THREE.PlaneBufferGeometry(data.width, data.height, 3, 3);
+    geometry = this.geometry = new THREE.PlaneGeometry(data.width, data.height, 3, 3);
 
     // Create mesh.
     if (data.usingCustomMaterial) {
@@ -174,7 +174,7 @@ AFRAME.registerComponent('slice9', {
     }
 
     if ('width' in diff || 'height' in diff) {
-      this.geometry = new THREE.PlaneBufferGeometry(data.width, data.height, 3, 3);
+      this.geometry = new THREE.PlaneGeometry(data.width, data.height, 3, 3);
       this.plane.geometry = this.geometry;
     }
 
