@@ -55,6 +55,7 @@
 	 */
 	AFRAME.registerComponent('slice9', {
 	  schema: {
+	    alphaTest: {default: 0.0},
 	    bottom: {default: 0, min: 0},
 	    color: {type: 'color', default: '#fff'},
 	    debug: {default: false},
@@ -81,15 +82,15 @@
 
 	    this.textureSrc = null;
 
-	    geometry = this.geometry = new THREE.PlaneBufferGeometry(data.width, data.height, 3, 3);
+	    geometry = this.geometry = new THREE.PlaneGeometry(data.width, data.height, 3, 3);
 
 	    // Create mesh.
 	    if (data.usingCustomMaterial) {
 	      this.plane = new THREE.Mesh(geometry);
 	    } else {
 	      material = this.material = new THREE.MeshBasicMaterial({
-	        color: data.color, opacity: data.opacity, transparent: data.transparent,
-	        wireframe: data.debug
+	        alphaTest: data.alphaTest, color: data.color, opacity: data.opacity,
+	        transparent: data.transparent, wireframe: data.debug
 	      });
 	      this.plane = new THREE.Mesh(geometry, material);
 	    }
@@ -103,6 +104,8 @@
 	    var uv;
 	    var uvs = this.geometry.attributes.uv.array;
 	    var width;
+
+	    if (this.material && !this.material.map) { return; }
 
 	    /*
 	      0--1------------------------------2--3
@@ -207,12 +210,18 @@
 
 	    // Update material if using built-in material.
 	    if (!data.usingCustomMaterial) {
+	      this.material.alphaTest = data.alphaTest;
 	      this.material.color.setStyle(data.color);
 	      this.material.opacity = data.opacity;
 	      this.material.transparent = data.transparent;
 	      this.material.wireframe = data.debug;
 	      this.material.side = parseSide(data.side);
 	      if ('src' in diff) { this.updateMap(); }
+	    }
+
+	    if ('width' in diff || 'height' in diff) {
+	      this.geometry = new THREE.PlaneGeometry(data.width, data.height, 3, 3);
+	      this.plane.geometry = this.geometry;
 	    }
 
 	    if ('width' in diff || 'height' in diff || 'padding' in diff || 'left' in diff ||
