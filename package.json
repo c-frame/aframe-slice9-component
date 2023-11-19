@@ -1,6 +1,6 @@
 {
   "name": "aframe-slice9-component",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Slice9 component for A-Frame.",
   "main": "index.js",
   "cdn": "dist/aframe-slice9-component.min.js",

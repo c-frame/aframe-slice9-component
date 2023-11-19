@@ -97,6 +97,16 @@
 	    this.el.setObject3D('mesh', this.plane);
 	  },
 
+	  remove: function() {
+	    if (this.geometry) {
+	      this.geometry.dispose();
+	    }
+
+	    if (this.material) {
+	      this.material.dispose();
+	    }
+	  },
+
 	  regenerateMesh: function () {
 	    var data = this.data;
 	    var height;
