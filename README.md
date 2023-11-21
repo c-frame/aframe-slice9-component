@@ -32,39 +32,28 @@ Install and use by directly including the [browser files](dist):
 ```html
 <head>
   <title>My A-Frame Scene</title>
-  <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-slice9-component@1.1.0/dist/aframe-slice9-component.min.js"></script>
 </head>
 
 <body>
   <a-scene>
-    <a-entity slice9="foo: bar"></a-entity>
+    <a-entity slice9="width: 2; height: 1; left: 20; right: 43; top: 20; bottom: 43; src: tooltip.png" position="0 1 -2"></a-entity>
   </a-scene>
 </body>
 ```
-
-<!-- If component is accepted to the Registry, uncomment this. -->
-<!--
-Or with [angle](https://npmjs.com/package/angle/), you can install the proper
-version of the component straight into your HTML file, respective to your
-version of A-Frame:
-
-```sh
-angle install aframe-slice9-component
-```
--->
 
 #### npm
 
 Install via npm:
 
 ```bash
-npm install aframe-slice9-component
+npm install @c-frame/aframe-slice9-component
 ```
 
 Then require and use.
 
 ```js
 require('aframe');
-require('aframe-slice9-component');
+require('@c-frame/aframe-slice9-component');
 ```
